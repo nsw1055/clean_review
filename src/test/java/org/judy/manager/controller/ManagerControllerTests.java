@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import org.judy.common.CommonConfig;
 import org.judy.common.ServletConfig;
 import org.judy.manager.config.ManagerConfig;
+import org.judy.store.config.StoreConfig;
 import org.judy.time.config.TimeConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CommonConfig.class, ServletConfig.class, ManagerConfig.class , TimeConfig.class})
+@ContextConfiguration(classes = {CommonConfig.class, ServletConfig.class, ManagerConfig.class , TimeConfig.class , StoreConfig.class})
 @Log4j
 @WebAppConfiguration
 public class ManagerControllerTests {

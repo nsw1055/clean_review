@@ -2,43 +2,54 @@ package org.judy.manager.service;
 
 import java.util.List;
 
+import org.judy.common.util.PageDTO;
 import org.judy.manager.domain.Manager;
 import org.judy.manager.dto.ManagerDTO;
 
 public interface ManagerService {
 
-	List<ManagerDTO> getMemberList();
+	List<ManagerDTO> getManagerList(PageDTO pageDTO);
+	
+	List<ManagerDTO> delManagerList(PageDTO pageDTO);
 	
 	ManagerDTO selectOne(String mid);
 	
-	default ManagerDTO toDto(Manager member) {
+	int totalMan(PageDTO pageDTO);
+	
+	void enabled(String mid);
+	
+	void registerMan(ManagerDTO managerDTO);
+	
+	default ManagerDTO toDTO(Manager manager) {
 		ManagerDTO dto = ManagerDTO.builder()
-								.mid(member.getMid())
-								.mpw(member.getMpw())
-								.email(member.getEmail())
-								.logoImg(member.getLogoImg())
-								.phone(member.getPhone())
-								.enabled(member.getEnabled())
-								.approval(member.getApproval())
-								.regdate(member.getRegdate())
-								.updatedate(member.getUpdatedate())
+								.mid(manager.getMid())
+								.mpw(manager.getMpw())
+								.email(manager.getEmail())
+								.logoImg(manager.getLogoImg())
+								.phone(manager.getPhone())
+								.sname(manager.getSname())
+								.enabled(manager.getEnabled())
+								.approval(manager.getApproval())
+								.regdate(manager.getRegdate())
+								.updatedate(manager.getUpdatedate())
 								.build();
 		return dto;
 	}
 	
 	default Manager toDomain(ManagerDTO dto) {
-		Manager member = Manager.builder()
+		Manager manager = Manager.builder()
 							.mid(dto.getMid())
 							.mpw(dto.getMpw())
 							.email(dto.getEmail())
 							.logoImg(dto.getLogoImg())
 							.phone(dto.getPhone())
+							.sname(dto.getSname())
 							.enabled(dto.getEnabled())
 							.approval(dto.getApproval())
 							.regdate(dto.getRegdate())
 							.updatedate(dto.getUpdatedate())
 							.build();
-	return member;
+	return manager;
 	}
 	
 }

@@ -2,6 +2,7 @@ package org.judy.common;
 
 
 import org.judy.manager.config.ManagerConfig;
+import org.judy.store.config.StoreConfig;
 import org.judy.time.config.TimeConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -10,7 +11,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] {CommonConfig.class , TimeConfig.class, ManagerConfig.class};
+		return new Class[] {CommonConfig.class , TimeConfig.class, ManagerConfig.class , StoreConfig.class};
 	}
 
 	@Override

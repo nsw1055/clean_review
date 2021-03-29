@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 
 @Configuration
 @Log4j
-@ComponentScan(basePackages = {"org.judy.common.aop"})
+@ComponentScan(basePackages = {"org.judy.common.aop", "org.judy.common.util"})
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 public class CommonConfig {
