@@ -88,14 +88,21 @@
 							
 							<div class="row">
 								<div class="col-md-12">
-									<div class="form-group">
-										<label class="bmd-label-floating">LogoImg</label> <input
-											type="text" class="form-control">
+									<div class="form-group bmd-form-group is-focused">
+										<label class="bmd-label-floating">LogoImg</label> 
+										
 									</div>
-								</div>
+									<div style = "margin-bottom: 10px">
+										<input type="file" name="uploadLogo" class="form-control" id="inputGroupFile02" >
+									</div>
+									<div class = "fileThumb">
+									
+									</div>
+									</div>
+									
 							</div>
 							
-							<button type="submit" class="modBtn btn btn-primary btn-round pull-right">취소</button>
+							<button type="submit" class="cancelBtn btn btn-primary btn-round pull-right">취소</button>
 							<button type="submit" class="modBtn btn btn-danger btn-round pull-right">등록</button>
 							
 							
@@ -139,54 +146,40 @@
 	
 }) */
 
-	const mid = document.querySelector("input[name='mid']").value
-// delete
+	
 
-document.querySelector(".delBtn").addEventListener("click" , function(e){
-
+document.querySelector(".modBtn").addEventListener("click", function(e){
 	e.preventDefault()
-
-	$(".modal1").modal("show")
-
-} , false)
-
-document.querySelector(".delAgree").addEventListener("click" , function(e){
-
-	e.preventDefault()
-	$(".modal1").modal("hide")
+	console.log(e.target)
+	const fd = new FormData() 
+	const input = document.querySelector("input[name='uploadLogo']")
+	console.dir(input)
+	const files = input.files
+	console.dir(files)
+	for (var i = 0; i < files.length; i++) {
+	fd.append("files", files[i])
+	}
+	console.dir(fd)
 	
-
-	//console.log(mid)
-	const sendDelete=(
-	function sendDel(){
 	
- 		return fetch ("/admin/manager/delete" , {
-				method : 'post' ,
-				headers : {'Content-Type':'application/json'} ,
-				body : mid		
- 		}).then(res => res.text()).then(result => $(".modal2").modal("show"))
- 		
-	})();
+	function sendUpload(){
+		return fetch("/admin/common/manager/upload",{
+			method : 'post',
+			body : fd
+		}).then(res => res.json())
+	}
 	
-	//location.href = "/admin/manager/read?mid=" + mid
-} , false)
-
-// delCommit
-document.querySelector(".delCommit").addEventListener("click" , function(e){
-
-	e.preventDefault()
+	sendUpload().then(result => {
+		for (var i = 0; i < result.length; i++) {
+			let file = result[i]
+			console.log(file.link)
+		document.querySelector(".fileThumb").innerHTML += "<img src='/admin/common/view?file="+file.link+"' style = 'width: 90px; height: 90px' />"
+			
+		}
+	})
 	
-	location.href = "/admin/manager/read?mid=" + mid
-} , false)
-
-// delCancel
-document.querySelector(".delCancel").addEventListener("click" , function(e){
-
-	e.preventDefault()
 	
-	$(".modal1").modal("hide")
-} , false)
-
+})
 
 
 

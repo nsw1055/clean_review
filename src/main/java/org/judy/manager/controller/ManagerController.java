@@ -1,6 +1,10 @@
 package org.judy.manager.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.judy.common.util.PageDTO;
 import org.judy.common.util.PageMaker;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -91,6 +96,9 @@ public class ManagerController {
 	@PostMapping("/register")
 	public void postRegister() {
 		
+			
 	}
+	
+	
 	
 }

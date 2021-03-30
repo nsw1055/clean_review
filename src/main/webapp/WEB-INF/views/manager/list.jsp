@@ -14,32 +14,35 @@
 							<p class="card-category">Here is a subtitle for this table</p>
 						</div>
 						<div class="cardHeaderBtn">
-							<button type="submit" class="delListBtn btn btn-primary pull-right">Del List</button>
+							<button type="submit"
+								class="delListBtn btn btn-primary pull-right">Del List</button>
 						</div>
 					</div>
-					
+
 					<div class="card-body">
 						<div class="listTop">
-						
-						<div class="selectType">
+
+							<div class="selectType">
 								<select class="selectTypeVal custom-select">
 									<option ${"m" == pageDTO.type ? "selected" : "" } value="m">ID</option>
 									<option ${"s" == pageDTO.type ? "selected" : "" } value="s">매장명</option>
 									<option ${"c" == pageDTO.type ? "selected" : "" } value="c">내용</option>
 								</select>
 							</div>
-						
+
 							<div class="searchList input-group no-border">
-								<input type="text" value="" class="searchValue form-control" placeholder="Search...">
-								<button type="submit" class="searchBtn btn btn-white btn-round btn-just-icon">
+								<input type="text" value="" class="searchValue form-control"
+									placeholder="Search...">
+								<button type="submit"
+									class="searchBtn btn btn-white btn-round btn-just-icon">
 									<i class="material-icons">search</i>
 									<div class="ripple-container"></div>
 								</button>
 							</div>
-							
-							
-					
-							
+
+
+
+
 							<div class="selectPerSheet">
 								<select class="selectPerSheet custom-select">
 									<option ${10 == pageDTO.perSheet ? "selected" : "" } value="10">10개씩</option>
@@ -62,53 +65,54 @@
 									<th>UpdateDate</th>
 								</thead>
 								<tbody class="tableList">
-								<c:forEach items="${list }" var="manager">
-								<tr class="readBtn" data-mid = ${manager.mid }>
-								<td><img src= ${manager.logoImg }/></td>
-								<td>${manager.mid}</td>
-								<td>${manager.email}</td>
-								<td>${manager.phone}</td>
-								<td>${manager.sname}</td>
-								<td>${manager.enabled}</td>
-								<td>${manager.approval}</td>
-								<td>${manager.regdate}</td>
-								<td>${manager.updatedate}</td>
-								</tr>
-								</c:forEach>
-								
-								
+									<c:forEach items="${list }" var="manager">
+										<tr class="readBtn" data-mid=${manager.mid }>
+											<td><img src=${manager.logoImg } /></td>
+											<td>${manager.mid}</td>
+											<td>${manager.email}</td>
+											<td>${manager.phone}</td>
+											<td>${manager.sname}</td>
+											<td>${manager.enabled}</td>
+											<td>${manager.approval}</td>
+											<td>${manager.regdate}</td>
+											<td>${manager.updatedate}</td>
+										</tr>
+									</c:forEach>
+
+
 								</tbody>
 							</table>
 
-
-
-							<!-- pagination -->
-							<div>
-							
-								<div class="cardHeaderBtn">
-									<button type="submit" class="registerBtn btn btn-primary pull-right">Register</button>
+							<div style ="display: flex; flex-direction: column;">
+								<div class="cardBottomBtn">
+									<button type="submit"
+										class="registerBtn btn btn-primary pull-right">Register</button>
 								</div>
-							
-								<ul class="pagination justify-content-center">
-									<c:if test="${pageMaker.prev}">
-										<li class="page-item"><a class="page-link"
-											href="${pageMaker.start -1}" tabindex="-1"
-											aria-disabled="true">Previous</a></li>
-									</c:if>
-									<c:forEach begin="${pageMaker.start}" end="${pageMaker.end }"
-										var="num">
-										<li class="page-item ${num == pageDTO.page ? 'active' : ''}"><a
-											class="page-link" href="${num }">${num }</a></li>
 
-									</c:forEach>
+								<!-- pagination -->
+								<div>
 
-									<c:if test="${pageMaker.next}">
-										<li class="page-item"><a class="page-link"
-											href="${pageMaker.end +1}">Next</a></li>
-									</c:if>
-								</ul>
+
+									<ul class="pagination justify-content-center">
+										<c:if test="${pageMaker.prev}">
+											<li class="page-item"><a class="page-link"
+												href="${pageMaker.start -1}" tabindex="-1"
+												aria-disabled="true">Previous</a></li>
+										</c:if>
+										<c:forEach begin="${pageMaker.start}" end="${pageMaker.end }"
+											var="num">
+											<li class="page-item ${num == pageDTO.page ? 'active' : ''}"><a
+												class="page-link" href="${num }">${num }</a></li>
+
+										</c:forEach>
+
+										<c:if test="${pageMaker.next}">
+											<li class="page-item"><a class="page-link"
+												href="${pageMaker.end +1}">Next</a></li>
+										</c:if>
+									</ul>
+								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -120,10 +124,10 @@
 
 
 <form class="actionForm" action="/admin/manager/list" method="get">
-	<input type="hidden" name="page" value="${pageDTO.page}"> 
-	<input type="hidden" name="perSheet" value="${pageDTO.perSheet}">
-	<input type="hidden" name="type" value="${pageDTO.type}">
-	<input type="hidden" name="keyword" value="${pageDTO.keyword}">
+	<input type="hidden" name="page" value="${pageDTO.page}"> <input
+		type="hidden" name="perSheet" value="${pageDTO.perSheet}"> <input
+		type="hidden" name="type" value="${pageDTO.type}"> <input
+		type="hidden" name="keyword" value="${pageDTO.keyword}">
 </form>
 
 

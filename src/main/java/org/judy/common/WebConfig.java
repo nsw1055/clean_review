@@ -1,6 +1,9 @@
 package org.judy.common;
 
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 import org.judy.manager.config.ManagerConfig;
 import org.judy.store.config.StoreConfig;
 import org.judy.time.config.TimeConfig;
@@ -25,5 +28,15 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		// TODO Auto-generated method stub
 		return new String[] {"/"};
 	}
+	
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+		
+		MultipartConfigElement multipartConfig
+			= new MultipartConfigElement("C:\\upload\\temp" , 20971520 , 41943040 , 20971520);
+		registration.setMultipartConfig(multipartConfig);
+	}
+	
 
 }
